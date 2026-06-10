@@ -5,7 +5,10 @@ def light_spell_allowed_ingredients() -> list[str]:
 
 
 def light_spell_record(spell_name: str, ingredients: str) -> str:
-    pass
+    from .light_validator import validate_ingredients
 
+    res = validate_ingredients(ingredients)
+    if "INVALID" in res:
+        return f"Spell rejected: {spell_name} ({res})"
 
-
+    return f"Spell recorded: {spell_name} ({res})"
